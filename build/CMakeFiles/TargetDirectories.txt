@@ -1,0 +1,3 @@
+/home/dotpyscript/ps/calculator/build/CMakeFiles/calculator.dir
+/home/dotpyscript/ps/calculator/build/CMakeFiles/edit_cache.dir
+/home/dotpyscript/ps/calculator/build/CMakeFiles/rebuild_cache.dir
