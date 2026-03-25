@@ -1,25 +1,39 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <algorithm>
+#include <cctype>
 #include "../include/calculator.h"
 
 int main() {
     while(true) {
-        double a, b;
-        char op;
+
+        std::string input;
         std::string error;
 
         std::cout << "\nEnter expression (e.g., 2, 3) or 'q' to quit: ";
+        std::getline(std::cin, input);
+
+        // convert to lowercase
+        std::transform(input.begin(), input.end(), input.begin(), [](unsigned char c){return std::tolower(c);});
+
+        // trim spaces (simple version)
+
+        input.erase(0, input.find_first_not_of(" \t"));
+        input.erase(input.find_last_not_of(" \n") + 1);
 
         // check for Quit command first 
-        if (std::cin.peek() == 'q') {
+        if (input == "q" || input == "quit") {
             break;
         }
 
-        if (!(std::cin >> a >> op >> b )) {
-            std::cout << "invalid input\n";
+        std::stringstream ss(input);
 
-            std::cin.clear(); // clear error state
-            std::cin.ignore(1000, '\n'); // discard invalid input
+        double a, b;
+        char op;
+
+        if (!(ss >> a >> op >> b )) {
+            std::cout << "invalid input\n";
             continue;
         }
 
